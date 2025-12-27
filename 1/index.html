@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>카페 리버웨이브 | 소상공인 랜딩페이지 예시</title>
+    <meta
+      name="description"
+      content="소상공인을 위한 전환 중심 랜딩페이지 예시입니다. 문의/전화/길찾기 CTA를 포함합니다."
+    />
+
+    <style>
+      :root {
+        --bg: #0b0f19;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel2: rgba(255, 255, 255, 0.09);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.68);
+        --line: rgba(255, 255, 255, 0.14);
+        --accent: #6ee7ff;
+        --accent2: #a78bfa;
+        --good: #34d399;
+        --warn: #fbbf24;
+
+        --radius: 18px;
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic",
+          sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            900px 500px at 15% 10%,
+            rgba(110, 231, 255, 0.18),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 500px at 85% 15%,
+            rgba(167, 139, 250, 0.16),
+            transparent 55%
+          ),
+          radial-gradient(
+            700px 450px at 55% 85%,
+            rgba(52, 211, 153, 0.1),
+            transparent 60%
+          ),
+          var(--bg);
+        line-height: 1.55;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+      }
+      .container {
+        width: min(100% - 32px, var(--max));
+        margin: 0 auto;
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        background: rgba(11, 15, 25, 0.55);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        gap: 14px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 180px;
+      }
+      .logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 255, 0.95),
+          rgba(167, 139, 250, 0.85)
+        );
+        box-shadow: 0 10px 25px rgba(110, 231, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+      .logo::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.55),
+          transparent 60%
+        );
+        transform: rotate(15deg);
+      }
+      .brand-title {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        line-height: 1.1;
+      }
+      .brand-title strong {
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+      .brand-title span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .navlinks {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .navlinks a {
+        font-size: 13px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: 0.15s ease;
+      }
+      .navlinks a:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-cta {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        cursor: pointer;
+        transition: 0.15s ease;
+        white-space: nowrap;
+        user-select: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.09);
+      }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 255, 0.95),
+          rgba(167, 139, 250, 0.85)
+        );
+        color: rgba(11, 15, 25, 0.92);
+        font-weight: 700;
+      }
+      .btn.primary:hover {
+        filter: brightness(1.04);
+      }
+
+      /* Mobile menu */
+      .hamburger {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        cursor: pointer;
+      }
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.85);
+        margin: 4px auto;
+        border-radius: 999px;
+      }
+      .mobile-drawer {
+        display: none;
+        border-top: 1px solid var(--line);
+        background: rgba(11, 15, 25, 0.8);
+        padding: 12px 0 16px;
+      }
+      .mobile-drawer a {
+        display: block;
+        padding: 10px 6px;
+        color: var(--muted);
+        border-radius: 10px;
+      }
+      .mobile-drawer a:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+
+      /* Hero */
+      .hero {
+        padding: 54px 0 26px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--muted);
+        font-size: 12px;
+        width: fit-content;
+      }
+      .pill b {
+        color: var(--text);
+        font-weight: 700;
+      }
+      h1 {
+        margin: 14px 0 10px;
+        font-size: 40px;
+        line-height: 1.12;
+        letter-spacing: -0.4px;
+      }
+      .subhead {
+        color: var(--muted);
+        font-size: 15px;
+        max-width: 56ch;
+        margin: 0 0 18px;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .meta-row .chip {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 8px 10px;
+        border-radius: 999px;
+      }
+
+      .hero-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+      }
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -30%;
+        background: radial-gradient(
+            circle at 25% 20%,
+            rgba(110, 231, 255, 0.2),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(167, 139, 250, 0.18),
+            transparent 58%
+          ),
+          radial-gradient(
+            circle at 55% 90%,
+            rgba(52, 211, 153, 0.1),
+            transparent 60%
+          );
+        transform: rotate(6deg);
+        pointer-events: none;
+      }
+      .hero-card-inner {
+        position: relative;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .mini {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px;
+        border-radius: 14px;
+        background: rgba(11, 15, 25, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .mini-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.88);
+        font-weight: 800;
+      }
+      .mini strong {
+        display: block;
+        font-size: 13px;
+      }
+      .mini span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      /* Sections */
+      section {
+        padding: 22px 0;
+      }
+      .section-title {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .section-title h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: -0.2px;
+      }
+      .section-title p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 16px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+      }
+      .card h3 {
+        margin: 0 0 6px;
+        font-size: 14px;
+      }
+      .card p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .price {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .price .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .badge {
+        font-size: 11px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        color: rgba(255, 255, 255, 0.78);
+        background: rgba(255, 255, 255, 0.05);
+        white-space: nowrap;
+      }
+      .badge.good {
+        border-color: rgba(52, 211, 153, 0.35);
+        color: rgba(52, 211, 153, 0.95);
+      }
+      .badge.warn {
+        border-color: rgba(251, 191, 36, 0.35);
+        color: rgba(251, 191, 36, 0.95);
+      }
+
+      .list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .list-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        margin-top: 6px;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 255, 0.95),
+          rgba(167, 139, 250, 0.85)
+        );
+        flex: none;
+      }
+
+      /* Contact */
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 12px;
+        align-items: start;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(11, 15, 25, 0.35);
+        color: var(--text);
+        outline: none;
+      }
+      textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: rgba(110, 231, 255, 0.55);
+        box-shadow: 0 0 0 4px rgba(110, 231, 255, 0.12);
+      }
+      .help {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* Footer */
+      footer {
+        padding: 26px 0 70px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        margin-top: 10px;
+      }
+      .footer-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .small {
+        font-size: 12px;
+      }
+
+      /* Floating CTA (mobile) */
+      .floatbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 60;
+        background: rgba(11, 15, 25, 0.78);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line);
+        padding: 10px 12px;
+        display: none;
+      }
+      .floatbar .inner {
+        width: min(100% - 0px, var(--max));
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+      }
+      .floatbar .inner a,
+      .floatbar .inner button {
+        flex: 1;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        text-align: center;
+        cursor: pointer;
+      }
+      .floatbar .inner a.primary {
+        border-color: transparent;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 231, 255, 0.95),
+          rgba(167, 139, 250, 0.85)
+        );
+        color: rgba(11, 15, 25, 0.92);
+        font-weight: 800;
+      }
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        h1 {
+          font-size: 34px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-wrap {
+          grid-template-columns: 1fr;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .navlinks,
+        .nav-cta {
+          display: none;
+        }
+        .hamburger {
+          display: block;
+        }
+        .mobile-drawer {
+          display: block;
+        }
+        .mobile-drawer[hidden] {
+          display: none;
+        }
+        .hero {
+          padding: 34px 0 18px;
+        }
+        h1 {
+          font-size: 30px;
+        }
+        .floatbar {
+          display: block;
+        }
+        footer {
+          padding-bottom: 96px;
+        } /* floating bar 공간 */
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="nav">
+          <a class="brand" href="#top" aria-label="홈으로 이동">
+            <div class="logo" aria-hidden="true"></div>
+            <div class="brand-title">
+              <strong>카페 리버웨이브</strong>
+              <span>충주 | 스페셜티 & 디저트</span>
+            </div>
+          </a>
+
+          <nav class="navlinks" aria-label="상단 메뉴">
+            <a href="#menu">메뉴</a>
+            <a href="#pricing">가격/세트</a>
+            <a href="#reviews">후기</a>
+            <a href="#location">오시는 길</a>
+            <a href="#contact">문의</a>
+          </nav>
+
+          <div class="nav-cta">
+            <a class="btn" href="tel:010-1234-5678" aria-label="전화하기"
+              >전화</a
+            >
+            <a class="btn primary" href="#contact" aria-label="상담 문의하기"
+              >상담 문의</a
+            >
+          </div>
+
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-label="모바일 메뉴 열기"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+        <div class="mobile-drawer" id="drawer" hidden>
+          <div class="container">
+            <a href="#menu">메뉴</a>
+            <a href="#pricing">가격/세트</a>
+            <a href="#reviews">후기</a>
+            <a href="#location">오시는 길</a>
+            <a href="#contact">문의</a>
+            <div style="display: flex; gap: 10px; margin-top: 10px">
+              <a
+                class="btn"
+                style="flex: 1; text-align: center"
+                href="tel:010-1234-5678"
+                >전화</a
+              >
+              <a
+                class="btn primary"
+                style="flex: 1; text-align: center"
+                href="#contact"
+                >상담 문의</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="pill">
+                <b>오늘의 추천</b> 핸드드립 + 바스크 치즈케이크 세트
+              </div>
+
+              <h1>동네에서 가장 편하게, <br />그리고 가장 맛있게.</h1>
+              <p class="subhead">
+                카페 리버웨이브는 산미·밸런스 중심의 스페셜티 원두와, 매일 구운
+                디저트를 제공합니다. 예약 없이 방문 가능하며, 단체
+                주문(답례품/행사)도 상담 가능합니다.
+              </p>
+
+              <div class="hero-actions">
+                <a class="btn primary" href="#contact">상담 문의하기</a>
+                <a class="btn" href="#location">길찾기</a>
+                <a class="btn" href="#pricing">가격 보기</a>
+              </div>
+
+              <div class="meta-row" role="list">
+                <div class="chip" role="listitem">영업시간: 10:00–21:00</div>
+                <div class="chip" role="listitem">주차: 인근 공영주차장</div>
+                <div class="chip" role="listitem">좌석: 26석 · 콘센트 좌석</div>
+              </div>
+            </div>
+
+            <aside class="hero-card" aria-label="핵심 요약 카드">
+              <div class="hero-card-inner">
+                <div class="mini">
+                  <div class="mini-icon">1</div>
+                  <div>
+                    <strong>방문 목적이 분명해지는 구성</strong>
+                    <span>CTA(전화·문의·길찾기) 중심</span>
+                  </div>
+                </div>
+                <div class="mini">
+                  <div class="mini-icon">2</div>
+                  <div>
+                    <strong>모바일 퍼스트 반응형</strong>
+                    <span>하단 고정 버튼으로 전환 강화</span>
+                  </div>
+                </div>
+                <div class="mini">
+                  <div class="mini-icon">3</div>
+                  <div>
+                    <strong>외주 포트폴리오용 모듈화</strong>
+                    <span>업종만 바꾸면 바로 재사용</span>
+                  </div>
+                </div>
+
+                <div class="card" style="margin-top: 2px">
+                  <h3 style="margin-bottom: 8px">빠른 안내</h3>
+                  <p class="small" style="margin-bottom: 10px">
+                    단체 주문/답례품은 최소 2일 전 문의가 필요합니다.
+                  </p>
+                  <div style="display: flex; gap: 10px; flex-wrap: wrap">
+                    <span class="badge good">당일 방문 OK</span>
+                    <span class="badge warn">단체는 사전상담</span>
+                    <span class="badge">테이크아웃 가능</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section id="menu">
+        <div class="container">
+          <div class="section-title">
+            <h2>대표 메뉴</h2>
+            <p>가장 많이 찾는 조합으로 먼저 선택을 단순화합니다.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h3>스페셜티 아메리카노</h3>
+              <p>깔끔한 바디감과 단맛 중심 블렌딩.</p>
+            </div>
+            <div class="card">
+              <h3>핸드드립(싱글오리진)</h3>
+              <p>원두 설명 카드 제공(산지/노트/로스팅).</p>
+            </div>
+            <div class="card">
+              <h3>바스크 치즈케이크</h3>
+              <p>매일 소량 생산. 조기 품절 가능.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing">
+        <div class="container">
+          <div class="section-title">
+            <h2>가격 / 세트</h2>
+            <p>가격은 “간단하지만 설득력 있게” 보여주는 것이 중요합니다.</p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card price" aria-label="가격 목록">
+              <div class="row">
+                <div>
+                  <strong>아메리카노</strong>
+                  <div class="small" style="color: var(--muted)">HOT/ICE</div>
+                </div>
+                <span class="badge">4,500원</span>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>카페라떼</strong>
+                  <div class="small" style="color: var(--muted)">
+                    우유 변경 가능
+                  </div>
+                </div>
+                <span class="badge">5,500원</span>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>핸드드립</strong>
+                  <div class="small" style="color: var(--muted)">원두 선택</div>
+                </div>
+                <span class="badge">6,500원</span>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>디저트(1종)</strong>
+                  <div class="small" style="color: var(--muted)">일별 상이</div>
+                </div>
+                <span class="badge">5,000원~</span>
+              </div>
+            </div>
+
+            <div class="card" aria-label="세트/혜택">
+              <h3 style="margin-bottom: 10px">세트 & 혜택</h3>
+              <div class="list">
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >커피 + 디저트 세트</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >1,000원 할인 (평일 14:00–18:00)</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >단체 주문(10잔 이상)</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >컵홀더·스티커 제공(사전협의)</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >리뷰 이벤트</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >네이버 영수증 리뷰 작성 시 500원 할인</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section id="reviews">
+        <div class="container">
+          <div class="section-title">
+            <h2>고객 후기</h2>
+            <p>후기는 “불안 제거” 역할을 합니다. 3개만 있어도 효과가 큽니다.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="card">
+              <h3>“드립 향이 깔끔해서 재방문했습니다.”</h3>
+              <p>원두 설명이 자세해서 고르기 쉬웠습니다.</p>
+            </div>
+            <div class="card">
+              <h3>“디저트 퀄리티가 예상보다 높았습니다.”</h3>
+              <p>바스크 치즈케이크가 진하고 부드러웠습니다.</p>
+            </div>
+            <div class="card">
+              <h3>“작업하기 좋은 자리와 콘센트가 많습니다.”</h3>
+              <p>조용한 편이라 공부하기 좋았습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION -->
+      <section id="location">
+        <div class="container">
+          <div class="section-title">
+            <h2>오시는 길</h2>
+            <p>
+              지도는 실제 운영 시 카카오맵/네이버지도 링크로 교체하시면 됩니다.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <h3 style="margin-bottom: 10px">매장 정보</h3>
+              <div class="list">
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >주소</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >충북 충주시 예시로 123 (가상 주소)</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >전화</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >010-1234-5678</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >안내</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >주차는 인근 공영주차장을 권장드립니다.</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 10px;
+                  flex-wrap: wrap;
+                  margin-top: 12px;
+                "
+              >
+                <a
+                  class="btn"
+                  href="https://map.kakao.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >카카오맵 열기</a
+                >
+                <a
+                  class="btn"
+                  href="https://map.naver.com/"
+                  target="_blank"
+                  rel="noopener"
+                  >네이버지도 열기</a
+                >
+                <a class="btn primary" href="tel:010-1234-5678">전화로 문의</a>
+              </div>
+            </div>
+
+            <div class="card" aria-label="지도 자리">
+              <h3 style="margin-bottom: 10px">지도</h3>
+              <div
+                style="
+                  height: 260px;
+                  border-radius: 16px;
+                  border: 1px solid rgba(255, 255, 255, 0.12);
+                  background: radial-gradient(
+                      400px 240px at 30% 25%,
+                      rgba(110, 231, 255, 0.18),
+                      transparent 60%
+                    ),
+                    radial-gradient(
+                      420px 260px at 80% 20%,
+                      rgba(167, 139, 250, 0.14),
+                      transparent 60%
+                    ),
+                    rgba(255, 255, 255, 0.03);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: var(--muted);
+                  text-align: center;
+                  padding: 18px;
+                "
+              >
+                실제 운영 시<br />
+                카카오맵/네이버지도 임베드(iframe)로 교체하시면 됩니다.
+              </div>
+              <p class="help" style="margin-top: 10px">
+                외주 납품 시에는 “지도 노출/검색 노출” 요구가 자주 나오므로,
+                링크/임베드 옵션을 둘 다 준비해두시는 것이 좋습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>문의하기</h2>
+            <p>
+              실제 연동 전에는 폼 제출 시 안내 메시지로 처리해도 포트폴리오로
+              충분합니다.
+            </p>
+          </div>
+
+          <div class="contact-wrap">
+            <div class="card">
+              <h3 style="margin-bottom: 10px">상담 폼</h3>
+              <form class="form" id="contactForm">
+                <div class="field">
+                  <label for="name">성함</label>
+                  <input
+                    id="name"
+                    name="name"
+                    placeholder="예: 홍길동"
+                    required
+                  />
+                </div>
+
+                <div class="grid-2">
+                  <div class="field">
+                    <label for="phone">연락처</label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      placeholder="예: 010-1234-5678"
+                      inputmode="tel"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="type">문의 유형</label>
+                    <select id="type" name="type">
+                      <option value="visit">방문/좌석 문의</option>
+                      <option value="group">단체 주문/답례품</option>
+                      <option value="event">행사/협업</option>
+                      <option value="other">기타</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="message">내용</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="원하시는 내용(일시/수량/예산 등)을 적어주시면 더 빠르게 안내드립니다."
+                    required
+                  ></textarea>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                    align-items: center;
+                  "
+                >
+                  <button class="btn primary" type="submit">문의 제출</button>
+                  <button class="btn" type="button" id="copyPhone">
+                    전화번호 복사
+                  </button>
+                  <span class="help" id="formHint"
+                    >제출 시 실제 전송 대신 안내 메시지가 표시됩니다.</span
+                  >
+                </div>
+              </form>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom: 10px">빠른 연락</h3>
+              <div class="list">
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >전화</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >010-1234-5678</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >운영 시간</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >10:00–21:00 (라스트오더 20:30)</span
+                    >
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div class="dot" aria-hidden="true"></div>
+                  <div>
+                    <strong style="display: block; font-size: 13px"
+                      >단체 주문 안내</strong
+                    >
+                    <span style="color: var(--muted); font-size: 12px"
+                      >10잔 이상은 최소 2일 전 문의 권장</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 12px;
+                  display: flex;
+                  gap: 10px;
+                  flex-wrap: wrap;
+                "
+              >
+                <a class="btn primary" href="tel:010-1234-5678"
+                  >지금 전화하기</a
+                >
+                <a class="btn" href="#pricing">세트 보기</a>
+                <a class="btn" href="#menu">메뉴 보기</a>
+              </div>
+
+              <p class="help" style="margin-top: 12px">
+                포트폴리오 제출용이라면 “상담 전환 흐름(CTA)”이 보이도록 이
+                섹션을 강조해두는 편이 유리합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <strong style="display: block; color: rgba(255, 255, 255, 0.85)"
+                >카페 리버웨이브</strong
+              >
+              <div class="small">
+                소상공인 랜딩페이지 포트폴리오 예시 · 반응형
+              </div>
+            </div>
+            <div class="small">
+              © <span id="year"></span> RiverWave. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Mobile Floating CTA -->
+    <div class="floatbar" role="region" aria-label="하단 고정 빠른 버튼">
+      <div class="inner">
+        <a href="tel:010-1234-5678">전화</a>
+        <a class="primary" href="#contact">상담 문의</a>
+      </div>
+    </div>
+
+    <script>
+      // Smooth scroll for same-page anchors
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href");
+          if (!id || id === "#") return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+          // close mobile drawer if open
+          const drawer = document.getElementById("drawer");
+          const hamburger = document.getElementById("hamburger");
+          if (drawer && hamburger && !drawer.hasAttribute("hidden")) {
+            drawer.setAttribute("hidden", "");
+            hamburger.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+
+      // Mobile drawer toggle
+      const hamburger = document.getElementById("hamburger");
+      const drawer = document.getElementById("drawer");
+      if (hamburger && drawer) {
+        hamburger.addEventListener("click", () => {
+          const isOpen = !drawer.hasAttribute("hidden");
+          if (isOpen) {
+            drawer.setAttribute("hidden", "");
+            hamburger.setAttribute("aria-expanded", "false");
+          } else {
+            drawer.removeAttribute("hidden");
+            hamburger.setAttribute("aria-expanded", "true");
+          }
+        });
+      }
+
+      // Contact form demo submit
+      const form = document.getElementById("contactForm");
+      const hint = document.getElementById("formHint");
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name =
+            (document.getElementById("name")?.value || "").trim() || "고객";
+          if (hint)
+            hint.textContent =
+              name +
+              "님, 문의가 접수되었습니다(예시). 실제 납품 시에는 카카오채널/이메일/폼 백엔드 연동으로 교체하시면 됩니다.";
+          form.reset();
+        });
+      }
+
+      // Copy phone
+      const copyBtn = document.getElementById("copyPhone");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          const phone = "010-1234-5678";
+          try {
+            await navigator.clipboard.writeText(phone);
+            copyBtn.textContent = "복사 완료";
+            setTimeout(() => (copyBtn.textContent = "전화번호 복사"), 1200);
+          } catch {
+            alert("복사에 실패했습니다. 수동으로 복사해 주세요: " + phone);
+          }
+        });
+      }
+
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

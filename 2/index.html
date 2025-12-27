@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QWER Fan Hub | Fan-made Page</title>
+    <meta
+      name="description"
+      content="QWER 팬메이드 허브 페이지(반응형). 신곡 홍보, 영상, 갤러리, 팬월, 플레이리스트를 한 곳에."
+    />
+
+    <meta property="og:title" content="QWER Fan Hub | Fan-made Page" />
+    <meta
+      property="og:description"
+      content="신곡 홍보 · 영상 · 갤러리 · 팬월 · 플레이리스트(반응형)"
+    />
+    <meta property="og:type" content="website" />
+
+    <style>
+      :root {
+        /* default: NIGHT MODE ON (dark) */
+        --bg: #05060b;
+        --bg2: #0b0f1b;
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.7);
+        --line: rgba(255, 255, 255, 0.14);
+        --glass: rgba(255, 255, 255, 0.06);
+        --glass2: rgba(255, 255, 255, 0.1);
+        --shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+
+        --a1: #66f1ff;
+        --a2: #b49bff;
+        --a3: #42f2b3;
+        --warn: #ffd166;
+
+        --radius: 18px;
+        --max: 1180px;
+      }
+
+      /* DAY (night mode off) */
+      html[data-theme="day"] {
+        --bg: #f6f7fb;
+        --bg2: #eef1f7;
+        --text: rgba(12, 16, 28, 0.92);
+        --muted: rgba(12, 16, 28, 0.68);
+        --line: rgba(12, 16, 28, 0.14);
+        --glass: rgba(12, 16, 28, 0.04);
+        --glass2: rgba(12, 16, 28, 0.08);
+        --shadow: 0 18px 55px rgba(12, 16, 28, 0.14);
+
+        --a1: #0ea5e9;
+        --a2: #7c3aed;
+        --a3: #10b981;
+        --warn: #f59e0b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          "Noto Sans KR", Arial, "Apple SD Gothic Neo", "Malgun Gothic",
+          sans-serif;
+        background: radial-gradient(
+            900px 520px at 12% 12%,
+            color-mix(in srgb, var(--a1) 16%, transparent),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 520px at 88% 18%,
+            color-mix(in srgb, var(--a2) 14%, transparent),
+            transparent 55%
+          ),
+          radial-gradient(
+            760px 520px at 52% 86%,
+            color-mix(in srgb, var(--a3) 10%, transparent),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Fallback for browsers without color-mix */
+      @supports not (color: color-mix(in srgb, black 50%, white)) {
+        body {
+          background: radial-gradient(
+              900px 520px at 12% 12%,
+              rgba(102, 241, 255, 0.16),
+              transparent 55%
+            ),
+            radial-gradient(
+              900px 520px at 88% 18%,
+              rgba(180, 155, 255, 0.14),
+              transparent 55%
+            ),
+            radial-gradient(
+              760px 520px at 52% 86%,
+              rgba(66, 242, 179, 0.1),
+              transparent 60%
+            ),
+            linear-gradient(180deg, var(--bg), var(--bg2));
+        }
+        html[data-theme="day"] body {
+          background: radial-gradient(
+              900px 520px at 12% 12%,
+              rgba(14, 165, 233, 0.12),
+              transparent 55%
+            ),
+            radial-gradient(
+              900px 520px at 88% 18%,
+              rgba(124, 58, 237, 0.1),
+              transparent 55%
+            ),
+            radial-gradient(
+              760px 520px at 52% 86%,
+              rgba(16, 185, 129, 0.08),
+              transparent 60%
+            ),
+            linear-gradient(180deg, var(--bg), var(--bg2));
+        }
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        width: min(100% - 32px, var(--max));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 80;
+        background: color-mix(in srgb, var(--bg) 60%, transparent);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      @supports not (background: color-mix(in srgb, black 50%, transparent)) {
+        header {
+          background: rgba(5, 6, 11, 0.6);
+        }
+        html[data-theme="day"] header {
+          background: rgba(246, 247, 251, 0.72);
+        }
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 210px;
+      }
+      .mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--a1), var(--a2));
+        box-shadow: 0 14px 30px color-mix(in srgb, var(--a1) 18%, transparent);
+        position: relative;
+        overflow: hidden;
+      }
+      .mark:after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.55),
+          transparent 60%
+        );
+        transform: rotate(15deg);
+      }
+      .brand .t {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+      }
+      .brand .t strong {
+        font-size: 14px;
+        letter-spacing: 0.2px;
+      }
+      .brand .t span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .nav a {
+        font-size: 13px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: 0.15s ease;
+      }
+      .nav a:hover {
+        color: var(--text);
+        background: var(--glass);
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        color: var(--text);
+        cursor: pointer;
+        transition: 0.15s ease;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        background: var(--glass2);
+      }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--a1), var(--a2));
+        color: color-mix(in srgb, var(--bg) 10%, black 90%);
+        font-weight: 900;
+      }
+      .btn.ghost {
+        background: transparent;
+      }
+      .btn.ghost:hover {
+        background: var(--glass);
+      }
+
+      /* ICON BUTTON (new) */
+      .iconbtn {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        color: var(--text);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+      .iconbtn:hover {
+        transform: translateY(-1px);
+        background: var(--glass2);
+      }
+      .iconbtn svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+      .iconbtn:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--a1) 12%, transparent);
+        border-color: color-mix(in srgb, var(--a1) 55%, var(--line));
+      }
+      @supports not (color: color-mix(in srgb, black 50%, white)) {
+        .iconbtn:focus {
+          box-shadow: 0 0 0 4px rgba(102, 241, 255, 0.12);
+          border-color: rgba(102, 241, 255, 0.55);
+        }
+        html[data-theme="day"] .iconbtn:focus {
+          box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+          border-color: rgba(14, 165, 233, 0.55);
+        }
+      }
+
+      /* Mobile menu */
+      .burger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        cursor: pointer;
+      }
+      .burger span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: color-mix(in srgb, var(--text) 92%, transparent);
+        margin: 4px auto;
+        border-radius: 999px;
+      }
+      .drawer {
+        display: none;
+        border-top: 1px solid var(--line);
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        padding: 12px 0 16px;
+      }
+      .drawer a {
+        display: block;
+        padding: 10px 6px;
+        color: var(--muted);
+        border-radius: 10px;
+      }
+      .drawer a:hover {
+        background: var(--glass);
+        color: var(--text);
+      }
+      .drawer[hidden] {
+        display: none;
+      }
+      @supports not (background: color-mix(in srgb, black 50%, transparent)) {
+        .drawer {
+          background: rgba(5, 6, 11, 0.82);
+        }
+        html[data-theme="day"] .drawer {
+          background: rgba(246, 247, 251, 0.86);
+        }
+      }
+
+      /* (rest of layout styles remain same as previous version) */
+      .hero {
+        position: relative;
+        padding: 34px 0 22px;
+      }
+      .hero-visual {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: var(--glass);
+        min-height: 380px;
+      }
+      .hero-visual .bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.72)
+          ),
+          url("https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Southkorean%20band.png?width=1600");
+        background-size: cover;
+        background-position: center 25%;
+        transform: scale(1.02);
+        filter: saturate(1.02) contrast(1.02);
+      }
+      html[data-theme="day"] .hero-visual .bg {
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.78)
+          ),
+          url("https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Southkorean%20band.png?width=1600");
+        background-size: cover;
+        background-position: center 25%;
+      }
+      .hero-visual .grain {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px
+        );
+        background-size: 18px 18px;
+        opacity: 0.15;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+      .hero-content {
+        position: relative;
+        padding: 22px;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 14px;
+        align-items: end;
+        min-height: 380px;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        color: var(--muted);
+        font-size: 12px;
+        width: fit-content;
+      }
+      .tag b {
+        color: var(--text);
+      }
+      .hero h1 {
+        margin: 12px 0 10px;
+        font-size: 44px;
+        line-height: 1.08;
+        letter-spacing: -0.5px;
+      }
+      .hero p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        max-width: 64ch;
+        font-size: 15px;
+      }
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .stat {
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 16px;
+        padding: 12px;
+      }
+      html[data-theme="day"] .stat {
+        background: rgba(255, 255, 255, 0.55);
+      }
+      .stat strong {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .stat span {
+        display: block;
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: -0.2px;
+      }
+
+      section {
+        padding: 22px 0;
+      }
+      .rowhead {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .rowhead h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: -0.2px;
+      }
+      .rowhead p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--glass);
+        border-radius: var(--radius);
+        padding: 16px;
+        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.24);
+      }
+      html[data-theme="day"] .card {
+        box-shadow: 0 10px 34px rgba(12, 16, 28, 0.1);
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .promo {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        box-shadow: var(--shadow);
+      }
+      .promo-in {
+        padding: 18px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 14px;
+        align-items: start;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+        font-size: 12px;
+        color: var(--text);
+        width: fit-content;
+      }
+      .badge.hot {
+        border-color: color-mix(in srgb, var(--a1) 45%, var(--line));
+        color: var(--a1);
+      }
+      .promo h3 {
+        margin: 10px 0 8px;
+        font-size: 18px;
+        letter-spacing: -0.2px;
+      }
+      .promo .desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .promo .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .video {
+        aspect-ratio: 16/9;
+        width: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.15);
+      }
+      html[data-theme="day"] .video {
+        background: rgba(12, 16, 28, 0.06);
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Gallery + Wall + Footer keep same logic as before (shortened for readability) */
+      .gallery {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .shot {
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        background: var(--glass);
+        min-height: 260px;
+        position: relative;
+      }
+      .shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+      }
+      .shot .cap {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(10px);
+        font-size: 12px;
+      }
+      html[data-theme="day"] .shot .cap {
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .thumbs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .thumb {
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        background: var(--glass);
+        min-height: 124px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.15s ease;
+      }
+      .thumb:hover {
+        transform: translateY(-2px);
+        background: var(--glass2);
+      }
+      .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .thumb .tcap {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        font-size: 11px;
+        background: rgba(0, 0, 0, 0.38);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 8px 10px;
+        backdrop-filter: blur(10px);
+      }
+      html[data-theme="day"] .thumb .tcap {
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .wall {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.18);
+        color: var(--text);
+        outline: none;
+      }
+      html[data-theme="day"] input,
+      html[data-theme="day"] textarea,
+      html[data-theme="day"] select {
+        background: rgba(255, 255, 255, 0.7);
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: rgba(102, 241, 255, 0.55);
+        box-shadow: 0 0 0 4px rgba(102, 241, 255, 0.12);
+      }
+      html[data-theme="day"] input:focus,
+      html[data-theme="day"] textarea:focus,
+      html[data-theme="day"] select:focus {
+        border-color: rgba(14, 165, 233, 0.55);
+        box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12);
+      }
+
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .post {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--glass);
+        padding: 12px;
+      }
+      .post .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .post .msg {
+        margin-top: 8px;
+        font-size: 13px;
+        white-space: pre-wrap;
+      }
+
+      footer {
+        padding: 26px 0 76px;
+        border-top: 1px solid var(--line);
+        margin-top: 10px;
+        color: var(--muted);
+      }
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 12px;
+      }
+
+      .floatbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 90;
+        background: rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line);
+        padding: 10px 12px;
+        display: none;
+      }
+      html[data-theme="day"] .floatbar {
+        background: rgba(255, 255, 255, 0.72);
+      }
+      .floatbar .inner {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+      }
+      .floatbar a {
+        flex: 1;
+        text-align: center;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: var(--glass);
+      }
+      .floatbar a.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--a1), var(--a2));
+        color: rgba(0, 0, 0, 0.86);
+        font-weight: 900;
+      }
+
+      @media (max-width: 1040px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+        }
+        .promo-in {
+          grid-template-columns: 1fr;
+        }
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 900px) {
+        .grid3 {
+          grid-template-columns: 1fr;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .wall {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 720px) {
+        .nav,
+        .actions {
+          display: none;
+        }
+        .burger {
+          display: block;
+        }
+        .drawer {
+          display: block;
+        }
+        .floatbar {
+          display: block;
+        }
+        .hero h1 {
+          font-size: 32px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="topbar">
+          <a class="brand" href="#top" aria-label="상단으로 이동">
+            <div class="mark" aria-hidden="true"></div>
+            <div class="t">
+              <strong>QWER Fan Hub</strong>
+              <span>fan-made · video · gallery · wall</span>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="메인 메뉴">
+            <a href="#promo">신곡</a>
+            <a href="#watch">영상</a>
+            <a href="#gallery">갤러리</a>
+            <a href="#wall">팬월</a>
+            <a href="#links">링크</a>
+          </nav>
+
+          <div class="actions">
+            <!-- ICON TOGGLE (header) -->
+            <button
+              class="iconbtn"
+              id="nightIcon"
+              type="button"
+              aria-label="나이트 모드 끄기"
+              aria-pressed="true"
+            >
+              <span class="sr"></span>
+              <!-- icon injected by JS -->
+              <svg
+                id="nightIconSvg"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              ></svg>
+            </button>
+
+            <a class="btn" href="#wall">응원 남기기</a>
+            <a class="btn primary" href="#promo">신곡 바로가기</a>
+          </div>
+
+          <button
+            class="burger"
+            id="burger"
+            aria-label="모바일 메뉴 열기"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+
+        <div class="drawer" id="drawer" hidden>
+          <div class="container">
+            <a href="#promo">신곡</a>
+            <a href="#watch">영상</a>
+            <a href="#gallery">갤러리</a>
+            <a href="#wall">팬월</a>
+            <a href="#links">링크</a>
+            <div style="display: flex; gap: 10px; margin-top: 10px">
+              <!-- ICON TOGGLE (drawer) -->
+              <button
+                class="iconbtn"
+                style="flex: none"
+                id="nightIcon2"
+                type="button"
+                aria-label="나이트 모드 끄기"
+                aria-pressed="true"
+              >
+                <span class="sr">나이트 모드</span>
+                <svg
+                  id="nightIconSvg2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                ></svg>
+              </button>
+              <a
+                class="btn primary"
+                style="flex: 1; text-align: center"
+                href="#promo"
+                >신곡</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero">
+        <div class="hero-visual">
+          <div class="bg" aria-hidden="true"></div>
+          <div class="grain" aria-hidden="true"></div>
+
+          <div class="hero-content">
+            <div>
+              <div class="tag"><b>Fan-made</b> 비상업용 데모(포트폴리오)</div>
+              <h1>QWER를 처음 보는 분도<br />바로 즐길 수 있게.</h1>
+              <p>영상/신곡/갤러리/공식 링크를 “한 장”에 모은 팬 허브입니다.</p>
+              <div class="hero-ctas">
+                <a class="btn primary" href="#promo">신곡 섹션</a>
+                <a class="btn" href="#watch">영상 보기</a>
+                <a class="btn" href="#gallery">갤러리</a>
+                <a class="btn" href="#wall">팬월 참여</a>
+              </div>
+            </div>
+
+            <div class="stats" aria-label="빠른 정보">
+              <div class="stat">
+                <strong>지금 바로 추천</strong><span>Blue Whale</span>
+              </div>
+              <div class="stat"><strong>대표 MV</strong><span>Dear</span></div>
+              <div class="stat">
+                <strong>페이지 성격</strong><span>Fan Hub</span>
+              </div>
+              <div class="stat"><strong>기능</strong><span>Fan Wall</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="promo">
+        <div class="rowhead">
+          <h2>신곡 프로모션</h2>
+          <p>상단에 “듣기/보기” CTA를 집중 배치했습니다.</p>
+        </div>
+
+        <div class="promo">
+          <div class="promo-in">
+            <div>
+              <span class="badge hot">New</span>
+              <h3>흰수염고래 (Blue Whale)</h3>
+              <p class="desc">공식 YouTube로 바로 이동하는 링크입니다.</p>
+              <div class="cta">
+                <a
+                  class="btn primary"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.youtube.com/watch?v=h_S_Un3YoFo"
+                  >Special Clip</a
+                >
+                <a
+                  class="btn"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.youtube.com/watch?v=6tXCKF33IzM"
+                  >YouTube Audio</a
+                >
+                <a
+                  class="btn"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.youtube.com/@QWER_Band_official/videos"
+                  >Official Videos</a
+                >
+              </div>
+
+              <div class="card" style="margin-top: 12px">
+                <h3>오늘의 한 줄 응원(랜덤)</h3>
+                <p id="quote" style="margin-top: 6px"></p>
+              </div>
+            </div>
+
+            <div>
+              <div class="video" aria-label="Blue Whale Special Clip 임베드">
+                <iframe
+                  src="https://www.youtube.com/embed/h_S_Un3YoFo"
+                  title="QWER - Blue Whale (흰수염고래) Official Special Clip"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p style="margin: 10px 0 0; color: var(--muted); font-size: 12px">
+                공식 영상 임베드(YouTube). 페이지 공개 배포 시 권리/정책은
+                플랫폼 기준을 따르셔야 합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="watch">
+        <div class="rowhead">
+          <h2>Watch Zone</h2>
+          <p>대표 MV + 공식 채널 접근을 제공합니다.</p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Dear (눈물참기) Official MV</h3>
+            <p>대표 MV를 고정하고, 공유 버튼을 함께 제공합니다.</p>
+            <div style="height: 12px"></div>
+            <div class="video">
+              <iframe
+                src="https://www.youtube.com/embed/pifz9JH1Re8"
+                title="QWER 'Dear' Official MV"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-top: 12px;
+              "
+            >
+              <a
+                class="btn primary"
+                target="_blank"
+                rel="noopener"
+                href="https://www.youtube.com/watch?v=pifz9JH1Re8"
+                >YouTube에서 열기</a
+              >
+              <button
+                class="btn"
+                type="button"
+                data-copy="https://www.youtube.com/watch?v=pifz9JH1Re8"
+              >
+                링크 복사
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Official Videos</h3>
+            <p>공식 채널 접근성은 신뢰도를 좌우합니다.</p>
+
+            <div class="card" style="margin-top: 12px">
+              <h3>미니 플레이리스트(로컬)</h3>
+              <p>“좋아요”는 브라우저에 저장됩니다.</p>
+              <div
+                id="playlist"
+                style="
+                  margin-top: 10px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="rowhead">
+          <h2>Gallery</h2>
+          <p>썸네일 클릭으로 메인 이미지를 교체합니다.</p>
+        </div>
+
+        <div class="gallery">
+          <div class="shot" aria-label="메인 이미지">
+            <img
+              id="mainImg"
+              alt="QWER 갤러리 이미지"
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Southkorean%20band.png?width=1600"
+            />
+            <div class="cap" id="mainCap">
+              Wikimedia Commons 이미지 · 클릭으로 교체됩니다.
+            </div>
+          </div>
+
+          <div class="thumbs" aria-label="썸네일 목록">
+            <div
+              class="thumb"
+              data-img="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Southkorean%20band.png?width=1600"
+              data-cap="QWER (Wikimedia Commons)"
+            >
+              <img
+                alt="썸네일 1"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Southkorean%20band.png?width=800"
+              />
+              <div class="tcap">Group Shot</div>
+            </div>
+
+            <div
+              class="thumb"
+              data-img="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Chodan%20(%EC%B5%B8%EB%8B%A8)%2010.png?width=1600"
+              data-cap="Chodan (Wikimedia Commons)"
+            >
+              <img
+                alt="썸네일 2"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Chodan%20(%EC%B5%B8%EB%8B%A8)%2010.png?width=800"
+              />
+              <div class="tcap">Chodan</div>
+            </div>
+
+            <div
+              class="thumb"
+              data-img="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Hina%20(%ED%9E%88%EB%82%98)%2002.png?width=1600"
+              data-cap="Hina (Wikimedia Commons)"
+            >
+              <img
+                alt="썸네일 3"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20Hina%20(%ED%9E%88%EB%82%98)%2002.png?width=800"
+              />
+              <div class="tcap">Hina</div>
+            </div>
+
+            <div
+              class="thumb"
+              data-img="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20%27Harmony%20from%20Discord%27%20Showcase%2001.png?width=1600"
+              data-cap="Showcase (Wikimedia Commons)"
+            >
+              <img
+                alt="썸네일 4"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/QWER%20%27Harmony%20from%20Discord%27%20Showcase%2001.png?width=800"
+              />
+              <div class="tcap">Showcase</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="wall">
+        <div class="rowhead">
+          <h2>Fan Wall</h2>
+          <p>방명록 느낌(로컬 저장 기반).</p>
+        </div>
+
+        <div class="wall">
+          <div class="card">
+            <h3>응원 남기기</h3>
+            <form
+              id="wallForm"
+              style="
+                margin-top: 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+            >
+              <div class="field">
+                <label for="nick">닉네임</label>
+                <input
+                  id="nick"
+                  name="nick"
+                  maxlength="24"
+                  placeholder="예: 바위게_001"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="topic">주제</label>
+                <select id="topic" name="topic">
+                  <option value="신곡">신곡</option>
+                  <option value="무대">무대</option>
+                  <option value="입덕">입덕</option>
+                  <option value="기타">기타</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="msg">메시지</label>
+                <textarea
+                  id="msg"
+                  name="msg"
+                  maxlength="240"
+                  placeholder="240자 이내로 남겨주세요."
+                  required
+                ></textarea>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  gap: 10px;
+                  flex-wrap: wrap;
+                  align-items: center;
+                "
+              >
+                <button class="btn primary" type="submit">등록</button>
+                <button class="btn" type="button" id="clearWall">
+                  전체 삭제(로컬)
+                </button>
+                <span style="font-size: 12px; color: var(--muted)" id="wallHint"
+                  >등록 즉시 오른쪽에 표시됩니다.</span
+                >
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>최근 응원</h3>
+            <div class="posts" id="posts" style="margin-top: 12px"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="links">
+        <div class="rowhead">
+          <h2>Official Links</h2>
+          <p>공식 링크 세트는 신뢰도를 완성합니다.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Instagram</h3>
+            <p>공식 인스타그램</p>
+            <div style="height: 10px"></div>
+            <a
+              class="btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.instagram.com/qwerband_official/"
+              >열기</a
+            >
+          </div>
+          <div class="card">
+            <h3>YouTube</h3>
+            <p>공식 채널(영상)</p>
+            <div style="height: 10px"></div>
+            <a
+              class="btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.youtube.com/@QWER_Band_official/videos"
+              >열기</a
+            >
+          </div>
+          <div class="card">
+            <h3>Wikimedia Commons</h3>
+            <p>공개 저장소(이미지/파일)</p>
+            <div style="height: 10px"></div>
+            <a
+              class="btn"
+              target="_blank"
+              rel="noopener"
+              href="https://commons.wikimedia.org/wiki/Category:QWER"
+              >열기</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="foot">
+          <div>
+            <strong style="display: block; color: var(--text)"
+              >QWER Fan Hub (fan-made demo)</strong
+            >
+            <div>반응형 · 갤러리 · 팬월 · 나이트 모드(아이콘)</div>
+          </div>
+          <div>© <span id="year"></span> Fan-made demo.</div>
+        </div>
+      </footer>
+    </main>
+
+    <div class="floatbar" role="region" aria-label="하단 고정 빠른 버튼">
+      <div class="inner">
+        <a href="#watch">영상</a>
+        <a class="primary" href="#promo">신곡</a>
+      </div>
+    </div>
+
+    <script>
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const id = a.getAttribute("href");
+          if (!id || id === "#") return;
+          const el = document.querySelector(id);
+          if (!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+
+          // close drawer
+          const drawer = document.getElementById("drawer");
+          const burger = document.getElementById("burger");
+          if (drawer && burger && !drawer.hasAttribute("hidden")) {
+            drawer.setAttribute("hidden", "");
+            burger.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+
+      // Mobile drawer toggle
+      const burger = document.getElementById("burger");
+      const drawer = document.getElementById("drawer");
+      if (burger && drawer) {
+        burger.addEventListener("click", () => {
+          const open = !drawer.hasAttribute("hidden");
+          if (open) {
+            drawer.setAttribute("hidden", "");
+            burger.setAttribute("aria-expanded", "false");
+          } else {
+            drawer.removeAttribute("hidden");
+            burger.setAttribute("aria-expanded", "true");
+          }
+        });
+      }
+
+      // === Night mode icon toggle ===
+      const NIGHT_KEY = "qwer_night_mode"; // "on" | "off"
+      let nightMode = (localStorage.getItem(NIGHT_KEY) || "on") === "on"; // default on
+
+      // Simple inline SVG icons (no external libs)
+      const ICON_SUN = `
+    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2" />
+    <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  `;
+      const ICON_MOON = `
+    <path d="M21 12.6A7.5 7.5 0 0 1 11.4 3a6.5 6.5 0 1 0 9.6 9.6Z"
+      stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  `;
+
+      const setTheme = () => {
+        const root = document.documentElement;
+
+        if (nightMode) {
+          // Dark (night on): remove day theme
+          root.removeAttribute("data-theme");
+        } else {
+          // Light (night off)
+          root.setAttribute("data-theme", "day");
+        }
+
+        localStorage.setItem(NIGHT_KEY, nightMode ? "on" : "off");
+        syncNightIcons();
+      };
+
+      const syncNightIcons = () => {
+        // When nightMode is ON, show SUN icon (action: switch to light)
+        // When nightMode is OFF, show MOON icon (action: switch to dark)
+        const showSun = nightMode;
+
+        const label = showSun
+          ? "나이트 모드 끄기(라이트로 전환)"
+          : "나이트 모드 켜기(다크로 전환)";
+        const pressed = String(nightMode);
+
+        const b1 = document.getElementById("nightIcon");
+        const b2 = document.getElementById("nightIcon2");
+        const s1 = document.getElementById("nightIconSvg");
+        const s2 = document.getElementById("nightIconSvg2");
+
+        if (b1) {
+          b1.setAttribute("aria-label", label);
+          b1.setAttribute("aria-pressed", pressed);
+        }
+        if (b2) {
+          b2.setAttribute("aria-label", label);
+          b2.setAttribute("aria-pressed", pressed);
+        }
+
+        if (s1) {
+          s1.innerHTML = showSun ? ICON_SUN : ICON_MOON;
+          s1.setAttribute("stroke-linecap", "round");
+        }
+        if (s2) {
+          s2.innerHTML = showSun ? ICON_SUN : ICON_MOON;
+          s2.setAttribute("stroke-linecap", "round");
+        }
+      };
+
+      const toggleNight = () => {
+        nightMode = !nightMode;
+        setTheme();
+      };
+
+      document
+        .getElementById("nightIcon")
+        ?.addEventListener("click", toggleNight);
+      document
+        .getElementById("nightIcon2")
+        ?.addEventListener("click", toggleNight);
+
+      setTheme();
+
+      // Random quotes
+      const quotes = [
+        "오늘도 QWER로 마음이 정리되는 날입니다.",
+        "한 곡만 더…가 아니라, 한 번 더 듣게 됩니다.",
+        "무대는 짧고, 여운은 길게 남습니다.",
+        "좋아하는 이유를 설명할 필요가 없는 팀이 있습니다.",
+      ];
+      const quoteEl = document.getElementById("quote");
+      if (quoteEl)
+        quoteEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+      // Copy helper
+      document.querySelectorAll("[data-copy]").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const text = btn.getAttribute("data-copy");
+          try {
+            await navigator.clipboard.writeText(text);
+            const prev = btn.textContent;
+            btn.textContent = "복사 완료";
+            setTimeout(() => (btn.textContent = prev), 1100);
+          } catch {
+            alert("복사에 실패했습니다. 직접 복사해 주세요:\n" + text);
+          }
+        });
+      });
+
+      // Gallery switching
+      const mainImg = document.getElementById("mainImg");
+      const mainCap = document.getElementById("mainCap");
+      document.querySelectorAll(".thumb").forEach((t) => {
+        t.addEventListener("click", () => {
+          const src = t.getAttribute("data-img");
+          const cap = t.getAttribute("data-cap") || "Gallery";
+          if (mainImg) mainImg.src = src;
+          if (mainCap) mainCap.textContent = cap + " · (Wikimedia Commons)";
+          window.scrollTo({
+            top: document.getElementById("gallery").offsetTop - 76,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Playlist (local likes)
+      const playlistData = [
+        {
+          title: "Blue Whale (흰수염고래)",
+          url: "https://www.youtube.com/watch?v=h_S_Un3YoFo",
+        },
+        {
+          title: "Dear (눈물참기) Official MV",
+          url: "https://www.youtube.com/watch?v=pifz9JH1Re8",
+        },
+        {
+          title: "Official Videos",
+          url: "https://www.youtube.com/@QWER_Band_official/videos",
+        },
+      ];
+      const likeKey = "qwer_playlist_likes";
+      const likes = JSON.parse(localStorage.getItem(likeKey) || "{}");
+
+      const renderPlaylist = () => {
+        const wrap = document.getElementById("playlist");
+        if (!wrap) return;
+        wrap.innerHTML = "";
+        playlistData.forEach((it, idx) => {
+          const k = String(idx);
+          const liked = !!likes[k];
+
+          const row = document.createElement("div");
+          row.style.border = "1px solid rgba(255,255,255,.14)";
+          row.style.borderRadius = "16px";
+          row.style.background = "rgba(255,255,255,.05)";
+          row.style.padding = "12px";
+
+          if (document.documentElement.getAttribute("data-theme") === "day") {
+            row.style.border = "1px solid rgba(12,16,28,.14)";
+            row.style.background = "rgba(12,16,28,.04)";
+          }
+
+          row.innerHTML = `
+        <div style="display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap;">
+          <div>
+            <div style="font-size:13px; font-weight:900;">${escapeHtml(
+              it.title
+            )}</div>
+            <div style="font-size:12px; color:rgba(255,255,255,.70); margin-top:2px;">${escapeHtml(
+              it.url
+            )}</div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <a class="btn" target="_blank" rel="noopener" href="${
+              it.url
+            }">열기</a>
+            <button class="btn ${
+              liked ? "primary" : ""
+            }" type="button" data-like="${k}">${
+            liked ? "좋아요됨" : "좋아요"
+          }</button>
+          </div>
+        </div>
+      `;
+          wrap.appendChild(row);
+        });
+
+        wrap.querySelectorAll("[data-like]").forEach((b) => {
+          b.addEventListener("click", () => {
+            const k = b.getAttribute("data-like");
+            likes[k] = !likes[k];
+            localStorage.setItem(likeKey, JSON.stringify(likes));
+            renderPlaylist();
+          });
+        });
+      };
+      renderPlaylist();
+
+      // Fan wall (local storage)
+      const wallKey = "qwer_fanwall_posts";
+      const loadPosts = () => JSON.parse(localStorage.getItem(wallKey) || "[]");
+      const savePosts = (p) => localStorage.setItem(wallKey, JSON.stringify(p));
+
+      const renderPosts = () => {
+        const box = document.getElementById("posts");
+        if (!box) return;
+        const posts = loadPosts();
+        box.innerHTML = "";
+        if (posts.length === 0) {
+          const empty = document.createElement("div");
+          empty.style.color =
+            document.documentElement.getAttribute("data-theme") === "day"
+              ? "rgba(12,16,28,.70)"
+              : "rgba(255,255,255,.70)";
+          empty.style.fontSize = "13px";
+          empty.textContent = "아직 응원이 없습니다. 첫 메시지를 남겨주세요.";
+          box.appendChild(empty);
+          return;
+        }
+        posts
+          .slice()
+          .reverse()
+          .forEach((p) => {
+            const el = document.createElement("div");
+            el.className = "post";
+            el.innerHTML = `
+        <div class="meta">
+          <span><b style="color:inherit;">${escapeHtml(
+            p.nick
+          )}</b> · ${escapeHtml(p.topic)}</span>
+          <span>${new Date(p.ts).toLocaleString()}</span>
+        </div>
+        <div class="msg">${escapeHtml(p.msg)}</div>
+      `;
+            box.appendChild(el);
+          });
+      };
+
+      const form = document.getElementById("wallForm");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nick = document.getElementById("nick").value.trim();
+        const topic = document.getElementById("topic").value;
+        const msg = document.getElementById("msg").value.trim();
+        if (!nick || !msg) return;
+
+        const posts = loadPosts();
+        posts.push({ nick, topic, msg, ts: Date.now() });
+        savePosts(posts);
+        form.reset();
+        document.getElementById("wallHint").textContent =
+          "등록되었습니다. (로컬 저장)";
+        renderPosts();
+      });
+
+      document.getElementById("clearWall")?.addEventListener("click", () => {
+        if (confirm("로컬에 저장된 팬월 내용을 모두 삭제하시겠습니까?")) {
+          localStorage.removeItem(wallKey);
+          renderPosts();
+          document.getElementById("wallHint").textContent = "삭제되었습니다.";
+        }
+      });
+
+      renderPosts();
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function escapeHtml(str) {
+        return String(str)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+    </script>
+  </body>
+</html>

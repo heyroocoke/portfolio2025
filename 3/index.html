@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HANS TOWER | 안내 · 임대</title>
+    <meta
+      name="description"
+      content="HANS TOWER 안내/임대 페이지(로컬 상권형). 시설, 층별, 임대, 오시는 길, 공지, 문의."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">본문 바로가기</a>
+
+    <header class="header" id="header">
+      <div class="container headerGrid">
+        <!-- LEFT: Brand -->
+        <a class="brand" href="#top" aria-label="상단으로 이동">
+          <span class="logo" aria-hidden="true">HS</span>
+          <span class="brandText">
+            <strong>HANS TOWER</strong>
+            <em>충주 문화 놀이터</em>
+          </span>
+        </a>
+        <!-- CENTER: Night mode icon (always centered) -->
+        <div class="centerSlot" aria-label="테마 전환">
+          <!-- <button
+            class="iconbtn"
+            id="themeBtn"
+            type="button"
+            aria-label="다크 모드 전환"
+            aria-pressed="false"
+          >
+            <svg
+              id="themeIcon"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            ></svg>
+          </button> -->
+        </div>
+
+        <!-- RIGHT: Actions -->
+        <div class="actions">
+          <a class="btn primary" href="#contact">임대 문의</a>
+          <button
+            class="burger"
+            id="burger"
+            type="button"
+            aria-label="모바일 메뉴"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="drawer" id="drawer" hidden>
+        <div class="container drawerCol">
+          <nav class="drawerNav" aria-label="모바일 메뉴">
+            <a href="#about">소개</a>
+            <a href="#floors">층별</a>
+            <a href="#leasing">임대</a>
+            <a href="#location">오시는 길</a>
+            <a href="#notice">공지</a>
+            <a href="#contact">문의</a>
+          </nav>
+
+          <div class="drawerRow">
+            <!-- <button class="btn" id="themeBtn2" type="button">테마 전환</button> -->
+            <a class="btn primary" href="#contact">상담 문의</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop nav (below header row) -->
+      <div class="subnavWrap">
+        <div class="container subnav" aria-label="메인 메뉴">
+          <a href="#about">소개</a>
+          <a href="#floors">층별</a>
+          <a href="#leasing">임대</a>
+          <a href="#location">오시는 길</a>
+          <a href="#notice">공지</a>
+          <a href="#contact">문의</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="container heroGrid">
+          <div class="heroCopy">
+            <p class="pill"><b>HANS TOWER</b> 상권형 안내 페이지</p>
+            <h1>동네에서 찾기 쉬운<br />한스타워 안내/임대.</h1>
+            <p class="sub">
+              방문 전 필요한 핵심 정보만 모았습니다. 임대/입주, 층별 안내,
+              오시는 길, 공지, 문의까지 한 번에 확인하세요.
+            </p>
+
+            <div class="heroCtas">
+              <a class="btn primary" href="#leasing">임대/입주 보기</a>
+              <a class="btn" href="#location">오시는 길</a>
+              <button class="btn ghost" type="button" id="copyAddr">
+                주소 복사
+              </button>
+            </div>
+
+            <div class="kpis" aria-label="핵심 정보">
+              <div class="kpi">
+                <strong>핵심</strong><span>접근성 · 주차 · 편의</span>
+              </div>
+              <div class="kpi">
+                <strong>추천 업종</strong><span>상가 · 오피스 · 클리닉</span>
+              </div>
+              <div class="kpi">
+                <strong>문의</strong><span>상담 예약 가능</span>
+              </div>
+            </div>
+
+            <p class="fine" id="addrLine">
+              주소: (예시) 충청북도 충주시 ○○로 00, HANS TOWER
+            </p>
+          </div>
+
+          <aside class="heroCard" aria-label="요약 카드">
+            <div class="heroVisual">
+              <img
+                src="./images/tower.jpeg"
+                alt="HANS TOWER 건물 사진"
+                loading="lazy"
+              />
+            </div>
+            <div class="heroCardBody">
+              <div class="badge">Local-friendly</div>
+              <h2>방문 전 체크</h2>
+              <ul class="bullets">
+                <li>층별 구성(업종 예시 포함)</li>
+                <li>임대 포인트/절차 요약</li>
+                <li>주차/교통 안내</li>
+                <li>문의 폼(검증 포함)</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>소개</h2>
+            <p>
+              로컬 상권형은 “따뜻함 + 명확한 안내 + 빠른 연결”이 핵심입니다.
+            </p>
+          </header>
+
+          <div class="grid3">
+            <article class="card">
+              <h3>입지</h3>
+              <p>동선/가시성/주요 시설 접근성을 쉽게 풀어 설명합니다.</p>
+            </article>
+            <article class="card">
+              <h3>편의</h3>
+              <p>주차, 엘리베이터, 공용부 이용 정보를 친절하게 정리합니다.</p>
+            </article>
+            <article class="card">
+              <h3>신뢰</h3>
+              <p>
+                관리/안전/운영 시간 등 “확인 가능한 정보”를 먼저 제공합니다.
+              </p>
+            </article>
+          </div>
+
+          <div class="split">
+            <div class="panel">
+              <h3>추천 업종(예시)</h3>
+              <p class="muted">
+                실제 입점 타깃에 맞게 태그만 바꿔도 완성도가 올라갑니다.
+              </p>
+              <div class="tagRow" id="bizTags"></div>
+            </div>
+
+            <div class="panel">
+              <h3>한 줄 요약</h3>
+              <p class="lead">
+                “HANS TOWER는 상권 고객이 찾기 쉽고, 입주자는 운영이 편한 공간을
+                목표로 합니다.”
+              </p>
+              <div class="miniStats">
+                <div class="mini">
+                  <strong>상담</strong><span>빠른 응대</span>
+                </div>
+                <div class="mini">
+                  <strong>안내</strong><span>층별/시설</span>
+                </div>
+                <div class="mini">
+                  <strong>방문</strong><span>지도/주차</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLOORS -->
+      <section class="section" id="floors">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>층별 안내</h2>
+            <p>
+              예시 데이터입니다. 실제 업종/층수/면적에 맞게 교체하시면 됩니다.
+            </p>
+          </header>
+
+          <div class="floors">
+            <aside class="floorList" aria-label="층 선택">
+              <button class="floorBtn is-active" type="button" data-floor="B1">
+                B1
+              </button>
+              <button class="floorBtn" type="button" data-floor="1F">1F</button>
+              <button class="floorBtn" type="button" data-floor="2F">2F</button>
+              <button class="floorBtn" type="button" data-floor="3F">3F</button>
+              <button class="floorBtn" type="button" data-floor="4F">4F</button>
+              <button class="floorBtn" type="button" data-floor="5F+">
+                5F+
+              </button>
+            </aside>
+
+            <div class="card" id="floorDetail" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEASING -->
+      <section class="section" id="leasing">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>임대/입주 안내</h2>
+            <p>로컬 상권형은 “조건을 쉽게 이해시키는 문장”이 중요합니다.</p>
+          </header>
+
+          <div class="grid2">
+            <article class="card">
+              <h3>임대 포인트</h3>
+              <ul class="check">
+                <li>업종 적합성 상담</li>
+                <li>희망 층/면적 옵션 안내</li>
+                <li>계약 절차·일정 안내</li>
+                <li>주차/시설 운영 규정 제공</li>
+              </ul>
+              <div class="ctaRow">
+                <a class="btn primary" href="#contact">임대 상담 신청</a>
+                <button class="btn" type="button" id="downloadGuide">
+                  안내서(예시) 보기
+                </button>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3>자주 묻는 질문</h3>
+              <div class="faq" id="faq"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOCATION -->
+      <section class="section" id="location">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>오시는 길</h2>
+            <p>
+              실제 배포 시 네이버/카카오 지도 임베드로 교체하시는 것을
+              권장드립니다.
+            </p>
+          </header>
+
+          <div class="grid2">
+            <div class="card">
+              <div
+                class="mapBox"
+                role="img"
+                aria-label="지도 영역(플레이스홀더)"
+              >
+                <div class="mapOverlay">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3187.2060221276397!2d127.92540267612925!3d36.981015222196156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35648657278be56b%3A0x66d9b4822410b9f8!2z7ZWc7Iqk7YOA7JuM!5e0!3m2!1sko!2skr!4v1766734550919!5m2!1sko!2skr"
+                    width="600"
+                    height="450"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>주차/교통</h3>
+              <ul class="check">
+                <li>주차장: 건물 내 지하주차장, 건물 옆 지상주차장 완비</li>
+                <li>대중교통: 버스 - 한스타워 정류장</li>
+                <li>택시: “HANS TOWER” 검색</li>
+              </ul>
+
+              <div class="infoGrid">
+                <div class="info">
+                  <strong>주소</strong>
+                  <span id="addrText2">
+                    충청북도 충주시 국원대로 107, HANS TOWER
+                  </span>
+                </div>
+                <div class="info">
+                  <strong>대표번호</strong>
+                  <span id="phoneText">010-0000-0000</span>
+                </div>
+                <div class="info">
+                  <strong>운영</strong>
+                  <span>평일 10:00–17:00</span>
+                </div>
+              </div>
+
+              <div class="ctaRow">
+                <button class="btn" type="button" id="copyPhone">
+                  대표번호 복사
+                </button>
+                <a class="btn primary" href="#contact">방문 상담 예약</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NOTICE -->
+      <section class="section" id="notice">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>공지사항</h2>
+            <p>관리 공지/안내를 모아두면 문의가 줄고 신뢰가 올라갑니다.</p>
+          </header>
+
+          <div class="noticeHead">
+            <div class="search">
+              <input
+                id="noticeSearch"
+                type="search"
+                placeholder="공지 검색 (예: 주차, 공사, 점검)"
+              />
+            </div>
+            <div class="filters" id="filters">
+              <button class="chipBtn is-active" type="button" data-filter="all">
+                전체
+              </button>
+              <button class="chipBtn" type="button" data-filter="운영">
+                운영
+              </button>
+              <button class="chipBtn" type="button" data-filter="시설">
+                시설
+              </button>
+              <button class="chipBtn" type="button" data-filter="주차">
+                주차
+              </button>
+            </div>
+          </div>
+
+          <div class="noticeGrid" id="noticeGrid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="container">
+          <header class="sectionHead">
+            <h2>문의 / 상담 예약</h2>
+            <p>
+              현재는 데모입니다. 실제 전송은 서버/구글폼/노션/슬랙 웹훅 등으로
+              연결하시면 됩니다.
+            </p>
+          </header>
+
+          <div class="grid2">
+            <form class="card form" id="contactForm">
+              <div class="field">
+                <label for="name">이름</label>
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  maxlength="30"
+                  placeholder="홍길동"
+                />
+              </div>
+
+              <div class="field">
+                <label for="phone">연락처</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  inputmode="tel"
+                  required
+                  placeholder="010-1234-5678"
+                />
+                <p class="hint">숫자/하이픈 형식 권장</p>
+              </div>
+
+              <div class="field">
+                <label for="type">문의 유형</label>
+                <select id="type" name="type">
+                  <option value="임대/입주">임대/입주</option>
+                  <option value="방문 상담">방문 상담</option>
+                  <option value="시설/운영 문의">시설/운영 문의</option>
+                  <option value="기타">기타</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="msg">내용</label>
+                <textarea
+                  id="msg"
+                  name="msg"
+                  required
+                  maxlength="600"
+                  placeholder="희망 층/면적, 업종, 방문 희망일 등을 적어주세요."
+                ></textarea>
+              </div>
+
+              <div class="formRow">
+                <button class="btn primary" type="submit">
+                  문의 제출(데모)
+                </button>
+                <button class="btn" type="button" id="resetForm">초기화</button>
+              </div>
+
+              <div
+                class="toast"
+                id="toast"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></div>
+            </form>
+
+            <aside class="card">
+              <h3>운영 안내</h3>
+              <p class="lead">
+                로컬 상권형 사이트는 “정보를 쉽게 찾게” 만드는 것이 핵심입니다.
+                실제 데이터 3개만 채우면 상업용 퀄리티로 올라갑니다.
+              </p>
+              <ol class="steps">
+                <li><b>주소/지도</b> 실제 플레이스로 교체</li>
+                <li><b>층별 구성</b> + <b>임대 조건</b> 입력</li>
+                <li><b>문의 방식</b>(전화/카톡/폼) 확정</li>
+              </ol>
+
+              <div class="ctaBox">
+                <strong>빠른 연결</strong>
+                <p>전화/카카오톡/문자 링크를 연결할 수 있습니다.</p>
+                <div class="ctaRow">
+                  <button class="btn" type="button" id="copyAddr2">
+                    주소 복사
+                  </button>
+                  <button class="btn primary" type="button" id="copyPhone2">
+                    대표번호 복사
+                  </button>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container foot">
+          <div>
+            <strong>HANS TOWER</strong>
+            <span>로컬 상권형 안내 · 임대 템플릿</span>
+          </div>
+          <div>© <span id="year"></span> HANS TOWER</div>
+        </div>
+      </footer>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
