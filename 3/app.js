@@ -57,11 +57,28 @@ applyTheme();
  * --------------------------- */
 const burger = $("#burger");
 const drawer = $("#drawer");
+let drawerCloseTimer = 0;
 
 function closeDrawer() {
   if (!drawer || !burger) return;
-  drawer.setAttribute("hidden", "");
+  drawer.classList.remove("is-open");
+  burger.classList.remove("is-open");
   burger.setAttribute("aria-expanded", "false");
+  drawer.setAttribute("aria-hidden", "true");
+
+  clearTimeout(drawerCloseTimer);
+  const hide = () => {
+    if (drawer.classList.contains("is-open")) return;
+    drawer.setAttribute("hidden", "");
+  };
+
+  const onEnd = (e) => {
+    if (e.target !== drawer) return;
+    drawer.removeEventListener("transitionend", onEnd);
+    hide();
+  };
+  drawer.addEventListener("transitionend", onEnd);
+  drawerCloseTimer = setTimeout(hide, 260); // fallback
 }
 function toggleDrawer() {
   if (!drawer || !burger) return;
@@ -70,6 +87,12 @@ function toggleDrawer() {
   else {
     drawer.removeAttribute("hidden");
     burger.setAttribute("aria-expanded", "true");
+    drawer.setAttribute("aria-hidden", "false");
+    clearTimeout(drawerCloseTimer);
+    requestAnimationFrame(() => {
+      drawer.classList.add("is-open");
+      burger.classList.add("is-open");
+    });
   }
 }
 burger?.addEventListener("click", toggleDrawer);
@@ -92,6 +115,50 @@ $$('a[href^="#"]').forEach((a) => {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
+
+/* ---------------------------
+ * Scroll to top
+ * --------------------------- */
+const toTopBtn = $("#toTop");
+if (toTopBtn) {
+  const THRESHOLD = 520; // px
+  let visible = false;
+  let ticking = false;
+
+  function setVisible(next) {
+    visible = next;
+    toTopBtn.classList.toggle("is-visible", next);
+    toTopBtn.setAttribute("aria-hidden", String(!next));
+    if (next) toTopBtn.removeAttribute("tabindex");
+    else toTopBtn.setAttribute("tabindex", "-1");
+  }
+
+  function update() {
+    const next = window.scrollY > THRESHOLD;
+    if (next !== visible) setVisible(next);
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        update();
+      });
+    },
+    { passive: true }
+  );
+
+  toTopBtn.addEventListener("click", () => {
+    const reduce =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  });
+
+  update();
+}
 
 /* ---------------------------
  * Data

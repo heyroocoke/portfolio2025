@@ -31,6 +31,9 @@ html[data-theme="dark"] {
 * {
   box-sizing: border-box;
 }
+[hidden] {
+  display: none !important;
+}
 html,
 body {
   height: 100%;
@@ -245,15 +248,37 @@ html[data-theme="dark"] .btn.primary {
   border: 1px solid var(--line);
   background: var(--surface);
   cursor: pointer;
+  position: relative;
 }
 .burger span {
-  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 18px;
   height: 2px;
   background: currentColor;
   opacity: 0.85;
-  margin: 4px auto;
   border-radius: 999px;
+  transform-origin: 50% 50%;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.burger span:nth-child(1) {
+  transform: translate(-50%, calc(-50% - 6px));
+}
+.burger span:nth-child(2) {
+  transform: translate(-50%, -50%);
+}
+.burger span:nth-child(3) {
+  transform: translate(-50%, calc(-50% + 6px));
+}
+.burger.is-open span:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.burger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-open span:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .drawer {
@@ -261,6 +286,20 @@ html[data-theme="dark"] .btn.primary {
   border-top: 1px solid var(--line);
   background: var(--bg);
   padding: 12px 0 16px;
+
+  /* slide down/up animation */
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: max-height 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
+}
+.drawer.is-open {
+  max-height: 520px; /* enough for menu content */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 .drawerCol {
   display: flex;
@@ -824,6 +863,45 @@ html[data-theme="dark"] .ctaBox {
   color: var(--text);
 }
 
+/* Scroll to top */
+.toTop {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 120;
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: 0.18s ease;
+}
+.toTop svg {
+  width: 20px;
+  height: 20px;
+}
+.toTop:hover {
+  transform: translateY(8px);
+}
+.toTop:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 55%, white);
+  outline-offset: 2px;
+}
+.toTop.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 /* Responsive */
 @media (max-width: 1040px) {
   .heroGrid {
@@ -872,6 +950,14 @@ html[data-theme="dark"] .ctaBox {
   .actions .btn.primary {
     display: none;
   } /* 모바일에서는 CTA는 드로어/섹션에서 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .burger span,
+  .toTop {
+    transition: none !important;
+  }
 }
 
 @media (max-width: 420px) {
