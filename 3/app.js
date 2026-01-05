@@ -152,8 +152,9 @@ if (toTopBtn) {
   );
 
   toTopBtn.addEventListener("click", () => {
-    const reduce =
-      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const reduce = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    )?.matches;
     window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   });
 
@@ -169,18 +170,22 @@ const PHONE = "010-0000-0000";
 
 $("#addrLine") && ($("#addrLine").textContent = `주소: ${ADDRESS}`);
 $("#addrText2") && ($("#addrText2").textContent = ADDRESS);
-$("#phoneText") && ($("#phoneText").textContent = `${PHONE} (예시)`);
+$("#addrText3") && ($("#addrText3").textContent = ADDRESS);
+$("#phoneText") && ($("#phoneText").textContent = PHONE);
+$("#phoneText2") && ($("#phoneText2").textContent = PHONE);
+
+// 전화 링크는 PHONE 값만 바꾸면 자동으로 함께 변경됩니다.
+const TEL_HREF = `tel:${PHONE.replace(/\D/g, "")}`;
+$$('[data-call="phone"]').forEach((a) => a.setAttribute("href", TEL_HREF));
 
 // Recommended tags
 const BIZ_TAGS = [
   "카페/베이커리",
   "학원/스터디",
   "클리닉",
-  "편의점",
   "오피스",
   "쇼룸",
   "미용/네일",
-  "피트니스",
 ];
 $("#bizTags") &&
   ($("#bizTags").innerHTML = BIZ_TAGS.map(
@@ -191,9 +196,9 @@ $("#bizTags") &&
  * Floors (example)
  * --------------------------- */
 const FLOORS = {
-  B1: {
-    title: "B1 | 주차/지원",
-    desc: "주차/설비/지원 기능 중심입니다.",
+  "B1~B2": {
+    title: "B1~B2 | 주차장",
+    desc: "주차장 완비",
     uses: ["주차장", "설비/창고", "입주자 동선"],
     meta: { 추천: "지원", 동선: "차량", 비고: "시설 운영" },
   },
@@ -320,101 +325,6 @@ if (faqEl) {
     });
   });
 }
-
-/* ---------------------------
- * Notices + filter/search
- * --------------------------- */
-const NOTICES = [
-  {
-    id: 1,
-    cat: "주차",
-    title: "주차장 동선 안내(임시)",
-    date: "2025-12-01",
-    body: "공사 기간 중 주차장 진입로가 일부 변경됩니다. 안내 표지판을 참고해 주세요.",
-  },
-  {
-    id: 2,
-    cat: "시설",
-    title: "엘리베이터 정기 점검",
-    date: "2025-11-20",
-    body: "정기 점검으로 일부 시간대 운행이 제한될 수 있습니다.",
-  },
-  {
-    id: 3,
-    cat: "운영",
-    title: "관리실 운영시간 안내",
-    date: "2025-11-05",
-    body: "평일 09:00–18:00 운영(점심시간 12:00–13:00).",
-  },
-  {
-    id: 4,
-    cat: "시설",
-    title: "공용부 청소 일정",
-    date: "2025-10-28",
-    body: "매주 수요일 공용부 집중 청소가 진행됩니다.",
-  },
-  {
-    id: 5,
-    cat: "주차",
-    title: "주차 등록 절차(입주자)",
-    date: "2025-10-10",
-    body: "차량 등록은 관리실에 서류 제출 후 처리됩니다.",
-  },
-];
-
-let noticeFilter = "all";
-let noticeQuery = "";
-
-function renderNotices() {
-  const box = $("#noticeGrid");
-  if (!box) return;
-
-  const items = NOTICES.filter((n) =>
-    noticeFilter === "all" ? true : n.cat === noticeFilter
-  )
-    .filter((n) => {
-      if (!noticeQuery) return true;
-      const q = noticeQuery.toLowerCase();
-      return (n.title + " " + n.body + " " + n.cat).toLowerCase().includes(q);
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-
-  box.innerHTML = items.length
-    ? items
-        .map(
-          (n) => `
-      <article class="card noticeItem">
-        <div class="noticeMeta">
-          <span>${escapeHtml(n.cat)}</span>
-          <span>·</span>
-          <span>${escapeHtml(n.date)}</span>
-        </div>
-        <h3 style="margin-top:8px;">${escapeHtml(n.title)}</h3>
-        <p>${escapeHtml(n.body)}</p>
-      </article>
-    `
-        )
-        .join("")
-    : `<div class="card"><h3>검색 결과가 없습니다.</h3><p>키워드를 바꾸거나 필터를 해제해 주세요.</p></div>`;
-}
-
-renderNotices();
-
-$("#noticeSearch")?.addEventListener("input", (e) => {
-  noticeQuery = e.target.value.trim();
-  renderNotices();
-});
-
-$$(".chipBtn", $("#filters") || document).forEach((btn) => {
-  btn.addEventListener("click", () => {
-    $$(".chipBtn", $("#filters")).forEach((b) =>
-      b.classList.remove("is-active")
-    );
-    btn.classList.add("is-active");
-    noticeFilter = btn.dataset.filter;
-    renderNotices();
-  });
-});
 
 /* ---------------------------
  * Copy helpers + Toast

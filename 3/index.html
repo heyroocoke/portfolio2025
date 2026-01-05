@@ -43,7 +43,9 @@
 
         <!-- RIGHT: Actions -->
         <div class="actions">
-          <a class="btn primary" href="#contact">임대 문의</a>
+          <a class="btn primary" href="tel:01000000000" data-call="phone"
+            >전화 문의</a
+          >
           <button
             class="burger"
             id="burger"
@@ -63,13 +65,14 @@
             <a href="#floors">층별</a>
             <a href="#leasing">임대</a>
             <a href="#location">오시는 길</a>
-            <a href="#notice">공지</a>
             <a href="#contact">문의</a>
           </nav>
 
           <div class="drawerRow">
             <!-- <button class="btn" id="themeBtn2" type="button">테마 전환</button> -->
-            <a class="btn primary" href="#contact">상담 문의</a>
+            <a class="btn primary" href="tel:01000000000" data-call="phone"
+              >전화 문의</a
+            >
           </div>
         </div>
       </div>
@@ -81,8 +84,7 @@
           <a href="#floors">층별</a>
           <a href="#leasing">임대</a>
           <a href="#location">오시는 길</a>
-          <a href="#notice">공지</a>
-          <a href="#contact">문의</a>
+          <a href="tel:01000000000" data-call="phone">전화 문의</a>
         </div>
       </div>
     </header>
@@ -92,8 +94,8 @@
       <section class="hero" id="top">
         <div class="container heroGrid">
           <div class="heroCopy">
-            <p class="pill"><b>HANS TOWER</b> 상권형 안내 페이지</p>
-            <h1>동네에서 찾기 쉬운<br />한스타워 안내/임대.</h1>
+            <p class="pill"><b>HANS TOWER</b> 안내 페이지</p>
+            <h1>충주에서 찾기 쉬운<br />한스타워 안내/임대.</h1>
             <p class="sub">
               방문 전 필요한 핵심 정보만 모았습니다. 임대/입주, 층별 안내,
               오시는 길, 공지, 문의까지 한 번에 확인하세요.
@@ -133,13 +135,13 @@
               />
             </div>
             <div class="heroCardBody">
-              <div class="badge">Local-friendly</div>
+              <div class="badge">로컬친화 상권</div>
               <h2>방문 전 체크</h2>
               <ul class="bullets">
-                <li>층별 구성(업종 예시 포함)</li>
-                <li>임대 포인트/절차 요약</li>
+                <li>층별 구성</li>
+                <li>임대 포인트</li>
                 <li>주차/교통 안내</li>
-                <li>문의 폼(검증 포함)</li>
+                <li>문의 하기</li>
               </ul>
             </div>
           </aside>
@@ -151,34 +153,28 @@
         <div class="container">
           <header class="sectionHead">
             <h2>소개</h2>
-            <p>
-              로컬 상권형은 “따뜻함 + 명확한 안내 + 빠른 연결”이 핵심입니다.
-            </p>
+            <p>충주의 랜드마크 한스타워</p>
           </header>
 
           <div class="grid3">
             <article class="card">
               <h3>입지</h3>
-              <p>동선/가시성/주요 시설 접근성을 쉽게 풀어 설명합니다.</p>
+              <p>충주 어디서나 보이는 한스타워</p>
             </article>
             <article class="card">
               <h3>편의</h3>
-              <p>주차, 엘리베이터, 공용부 이용 정보를 친절하게 정리합니다.</p>
+              <p>주차시설 완비, 엘레베이터 및 에스컬레이터 운영</p>
             </article>
             <article class="card">
               <h3>신뢰</h3>
-              <p>
-                관리/안전/운영 시간 등 “확인 가능한 정보”를 먼저 제공합니다.
-              </p>
+              <p>상시 관리인원 상주 및 건물 사무실 운영</p>
             </article>
           </div>
 
           <div class="split">
             <div class="panel">
-              <h3>추천 업종(예시)</h3>
-              <p class="muted">
-                실제 입점 타깃에 맞게 태그만 바꿔도 완성도가 올라갑니다.
-              </p>
+              <h3>추천 업종</h3>
+              <p class="muted">다양한 업종의 가능성</p>
               <div class="tagRow" id="bizTags"></div>
             </div>
 
@@ -216,8 +212,12 @@
 
           <div class="floors">
             <aside class="floorList" aria-label="층 선택">
-              <button class="floorBtn is-active" type="button" data-floor="B1">
-                B1
+              <button
+                class="floorBtn is-active"
+                type="button"
+                data-floor="B1~B2"
+              >
+                B1~B2
               </button>
               <button class="floorBtn" type="button" data-floor="1F">1F</button>
               <button class="floorBtn" type="button" data-floor="2F">2F</button>
@@ -251,7 +251,9 @@
                 <li>주차/시설 운영 규정 제공</li>
               </ul>
               <div class="ctaRow">
-                <a class="btn primary" href="#contact">임대 상담 신청</a>
+                <a class="btn primary" href="tel:01000000000" data-call="phone"
+                  >전화 상담</a
+                >
                 <button class="btn" type="button" id="downloadGuide">
                   안내서(예시) 보기
                 </button>
@@ -327,46 +329,12 @@
                 <button class="btn" type="button" id="copyPhone">
                   대표번호 복사
                 </button>
-                <a class="btn primary" href="#contact">방문 상담 예약</a>
+                <a class="btn primary" href="tel:01000000000" data-call="phone"
+                  >전화 상담</a
+                >
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- NOTICE -->
-      <section class="section" id="notice">
-        <div class="container">
-          <header class="sectionHead">
-            <h2>공지사항</h2>
-            <p>관리 공지/안내를 모아두면 문의가 줄고 신뢰가 올라갑니다.</p>
-          </header>
-
-          <div class="noticeHead">
-            <div class="search">
-              <input
-                id="noticeSearch"
-                type="search"
-                placeholder="공지 검색 (예: 주차, 공사, 점검)"
-              />
-            </div>
-            <div class="filters" id="filters">
-              <button class="chipBtn is-active" type="button" data-filter="all">
-                전체
-              </button>
-              <button class="chipBtn" type="button" data-filter="운영">
-                운영
-              </button>
-              <button class="chipBtn" type="button" data-filter="시설">
-                시설
-              </button>
-              <button class="chipBtn" type="button" data-filter="주차">
-                주차
-              </button>
-            </div>
-          </div>
-
-          <div class="noticeGrid" id="noticeGrid" aria-live="polite"></div>
         </div>
       </section>
 
@@ -374,64 +342,29 @@
       <section class="section" id="contact">
         <div class="container">
           <header class="sectionHead">
-            <h2>문의 / 상담 예약</h2>
-            <p>
-              현재는 데모입니다. 실제 전송은 서버/구글폼/노션/슬랙 웹훅 등으로
-              연결하시면 됩니다.
-            </p>
+            <h2>문의 / 전화 상담</h2>
+            <p>버튼을 누르면 바로 전화 연결됩니다.</p>
           </header>
 
           <div class="grid2">
-            <form class="card form" id="contactForm">
-              <div class="field">
-                <label for="name">이름</label>
-                <input
-                  id="name"
-                  name="name"
-                  required
-                  maxlength="30"
-                  placeholder="홍길동"
-                />
+            <aside class="card">
+              <h3>전화 문의</h3>
+              <p class="lead">아래 버튼을 누르면 바로 연결됩니다.</p>
+
+              <div class="infoGrid">
+                <div class="info">
+                  <strong>대표번호</strong>
+                  <span id="phoneText2">010-0000-0000</span>
+                </div>
               </div>
 
-              <div class="field">
-                <label for="phone">연락처</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  inputmode="tel"
-                  required
-                  placeholder="010-1234-5678"
-                />
-                <p class="hint">숫자/하이픈 형식 권장</p>
-              </div>
-
-              <div class="field">
-                <label for="type">문의 유형</label>
-                <select id="type" name="type">
-                  <option value="임대/입주">임대/입주</option>
-                  <option value="방문 상담">방문 상담</option>
-                  <option value="시설/운영 문의">시설/운영 문의</option>
-                  <option value="기타">기타</option>
-                </select>
-              </div>
-
-              <div class="field">
-                <label for="msg">내용</label>
-                <textarea
-                  id="msg"
-                  name="msg"
-                  required
-                  maxlength="600"
-                  placeholder="희망 층/면적, 업종, 방문 희망일 등을 적어주세요."
-                ></textarea>
-              </div>
-
-              <div class="formRow">
-                <button class="btn primary" type="submit">
-                  문의 제출(데모)
+              <div class="ctaRow">
+                <a class="btn primary" href="tel:01000000000" data-call="phone"
+                  >전화 걸기</a
+                >
+                <button class="btn" type="button" id="copyPhone2">
+                  대표번호 복사
                 </button>
-                <button class="btn" type="button" id="resetForm">초기화</button>
               </div>
 
               <div
@@ -441,29 +374,20 @@
                 aria-live="polite"
                 hidden
               ></div>
-            </form>
+            </aside>
 
             <aside class="card">
-              <h3>운영 안내</h3>
+              <h3>안내</h3>
               <p class="lead">
-                로컬 상권형 사이트는 “정보를 쉽게 찾게” 만드는 것이 핵심입니다.
-                실제 데이터 3개만 채우면 상업용 퀄리티로 올라갑니다.
+                빠른 상담이 필요하시면 전화로 문의해 주세요. (운영시간: 평일
+                10:00–17:00)
               </p>
-              <ol class="steps">
-                <li><b>주소/지도</b> 실제 플레이스로 교체</li>
-                <li><b>층별 구성</b> + <b>임대 조건</b> 입력</li>
-                <li><b>문의 방식</b>(전화/카톡/폼) 확정</li>
-              </ol>
-
               <div class="ctaBox">
-                <strong>빠른 연결</strong>
-                <p>전화/카카오톡/문자 링크를 연결할 수 있습니다.</p>
+                <strong>주소</strong>
+                <p id="addrText3">충청북도 충주시 국원대로 107, HANS TOWER</p>
                 <div class="ctaRow">
                   <button class="btn" type="button" id="copyAddr2">
                     주소 복사
-                  </button>
-                  <button class="btn primary" type="button" id="copyPhone2">
-                    대표번호 복사
                   </button>
                 </div>
               </div>
