@@ -274,7 +274,9 @@ $$(".floorBtn").forEach((btn) => {
     renderFloor(btn.dataset.floor);
   });
 });
-renderFloor("B1");
+// 초기 로딩 시: 현재 활성 버튼의 data-floor로 렌더 (키가 바뀌어도 안전)
+const initialFloor = $(".floorBtn.is-active")?.dataset.floor;
+renderFloor(initialFloor || Object.keys(FLOORS)[0]);
 
 /* ---------------------------
  * FAQ
