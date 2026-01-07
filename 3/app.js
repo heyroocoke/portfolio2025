@@ -199,38 +199,86 @@ const FLOORS = {
   "B1~B2": {
     title: "B1~B2 | 주차장",
     desc: "주차장 완비",
-    uses: ["주차장", "설비/창고", "입주자 동선"],
-    meta: { 추천: "지원", 동선: "차량", 비고: "시설 운영" },
+    tenants: [
+      {
+        name: "지하 주차장",
+        category: "주차",
+        desc: "건물 내 지하 주차 공간",
+        img: "./images/tower.jpeg",
+      },
+      {
+        name: "지상 주차장",
+        category: "주차",
+        desc: "건물 옆 지상 주차 공간",
+        img: "./images/tower.jpeg",
+      },
+    ],
   },
   "1F": {
-    title: "1F | 상가/카페",
-    desc: "유동 인구를 흡수하는 핵심 층입니다.",
-    uses: ["카페/베이커리", "편의점", "브랜드 쇼룸"],
-    meta: { 추천: "상가", 동선: "보행", 비고: "전면 노출" },
+    title: "1F | 상가",
+    desc: "1층 상가 라인",
+    tenants: [
+      {
+        name: "입주 상가 1",
+        category: "상가",
+        desc: "업장명/업종/사진을 주시면 실제 정보로 교체해드릴게요.",
+        img: "./images/tower.jpeg",
+      },
+      {
+        name: "입주 상가 2",
+        category: "상가",
+        desc: "업장명/업종/사진을 주시면 실제 정보로 교체해드릴게요.",
+        img: "./images/tower.jpeg",
+      },
+    ],
   },
   "2F": {
-    title: "2F | 서비스/클리닉",
-    desc: "재방문형 서비스 업종에 유리합니다.",
-    uses: ["클리닉", "미용/네일", "세무/법무"],
-    meta: { 추천: "서비스", 동선: "혼합", 비고: "대기공간" },
+    title: "2F | 나이스 롤러장",
+    desc: "실내 롤러스케이트 공간",
+    tenants: [
+      {
+        name: "나이스 롤러장",
+        category: "롤러장",
+        desc: "가족/친구와 즐기는 실내 레저 공간",
+        img: "./images/tenants/nice-roller.jpg",
+      },
+    ],
   },
   "3F": {
-    title: "3F | 교육/오피스",
-    desc: "학원/스터디/소규모 오피스에 적합합니다.",
-    uses: ["학원", "스터디", "소형 오피스"],
-    meta: { 추천: "교육/업무", 동선: "예약", 비고: "소음 관리" },
+    title: "3F | 나이스 볼링장",
+    desc: "쾌적한 실내 볼링장",
+    tenants: [
+      {
+        name: "나이스 볼링장",
+        category: "볼링장",
+        desc: "단체 모임/동호회 이용 추천",
+        img: "./images/tenants/nice-bowling.jpg",
+      },
+    ],
   },
   "4F": {
-    title: "4F | 입주형 오피스",
-    desc: "업무 밀도가 높은 입주형 층입니다.",
-    uses: ["사무실", "공유오피스", "회의실"],
-    meta: { 추천: "오피스", 동선: "입주자", 비고: "출입 관리" },
+    title: "4F | 나이스 볼링장",
+    desc: "추가 레인/공간",
+    tenants: [
+      {
+        name: "나이스 볼링장(확장)",
+        category: "볼링장",
+        desc: "추가 레인/대기 공간 운영",
+        img: "./images/tenants/nice-bowling-2.jpg",
+      },
+    ],
   },
   "5F+": {
-    title: "5F+ | 확장/특화",
-    desc: "면적/구성에 따라 맞춤 협의가 가능합니다.",
-    uses: ["확장 오피스", "스튜디오", "특화 업종"],
-    meta: { 추천: "확장", 동선: "선택", 비고: "맞춤 협의" },
+    title: "5F+ | CGV충주교현",
+    desc: "영화관",
+    tenants: [
+      {
+        name: "CGV 충주교현",
+        category: "영화관",
+        desc: "최신 영화 상영",
+        img: "./images/tenants/cgv.jpg",
+      },
+    ],
   },
 };
 
@@ -239,31 +287,62 @@ function renderFloor(key) {
   const f = FLOORS[key];
   if (!box || !f) return;
 
+  const fallbackImg = "./images/tower.jpeg";
+  const tenants = Array.isArray(f.tenants) ? f.tenants : [];
+
   box.innerHTML = `
-    <h3 style="margin:0 0 6px;">${escapeHtml(f.title)}</h3>
-    <p style="margin:0; color:var(--muted); font-size:13px;">${escapeHtml(
-      f.desc
-    )}</p>
-
-    <div class="miniStats" style="margin-top:12px;">
-      ${Object.entries(f.meta)
-        .map(
-          ([k, v]) => `
-        <div class="mini">
-          <strong>${escapeHtml(k)}</strong>
-          <span>${escapeHtml(v)}</span>
-        </div>
-      `
-        )
-        .join("")}
+    <div class="floorDetailHead">
+      <div>
+        <h3 class="floorTitle">${escapeHtml(f.title)}</h3>
+        <p class="floorDesc">${escapeHtml(f.desc || "")}</p>
+      </div>
+      <span class="floorCount">${
+        tenants.length ? `${tenants.length}개 업장` : "입주 업장 정보"
+      }</span>
     </div>
 
-    <div style="margin-top:12px;">
-      <strong style="display:block; font-size:12px; color:var(--muted);">대표 구성(예시)</strong>
-      <ul class="check" style="margin-top:8px;">
-        ${f.uses.map((u) => `<li>${escapeHtml(u)}</li>`).join("")}
-      </ul>
-    </div>
+    ${
+      tenants.length
+        ? `<div class="tenantGrid">
+            ${tenants
+              .map(
+                (t) => `
+              <article class="tenantCard">
+                <div class="tenantImg">
+                  <img
+                    src="${escapeHtml(t.img || fallbackImg)}"
+                    alt="${escapeHtml(t.name)} 사진"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='${fallbackImg}'"
+                  />
+                </div>
+                <div class="tenantBody">
+                  <div class="tenantTop">
+                    <strong class="tenantName">${escapeHtml(t.name)}</strong>
+                    ${
+                      t.category
+                        ? `<span class="tenantTag">${escapeHtml(
+                            t.category
+                          )}</span>`
+                        : ""
+                    }
+                  </div>
+                  ${
+                    t.desc
+                      ? `<p class="tenantDesc">${escapeHtml(t.desc)}</p>`
+                      : ""
+                  }
+                </div>
+              </article>
+            `
+              )
+              .join("")}
+          </div>`
+        : `<div class="tenantEmpty">
+            <strong>입주 업장 정보를 준비 중입니다.</strong>
+            <p class="muted">원하시면 업장명/업종/사진을 주시면 이 섹션에 바로 반영해드릴게요.</p>
+          </div>`
+    }
   `;
 }
 
@@ -361,10 +440,6 @@ $("#copyPhone")?.addEventListener("click", () =>
 $("#copyPhone2")?.addEventListener("click", () =>
   copyText(PHONE, "대표번호가 복사되었습니다.")
 );
-
-$("#downloadGuide")?.addEventListener("click", () => {
-  alert("안내서(예시) 기능입니다. 실제 PDF 링크로 교체하시면 됩니다.");
-});
 
 /* ---------------------------
  * Contact form validation (demo)
